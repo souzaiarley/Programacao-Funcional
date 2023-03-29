@@ -73,3 +73,16 @@ menores n lista = [x | x <- lista, x <= n]
 alter :: Int -> [Int]
 alter 0 = []
 alter n = alter (n-1) ++ [n] ++ [(-n)]
+
+reverso :: [Int] -> [Int]
+reverso [] = []
+reverso (x:xs) = reverso xs ++ [x]
+
+divide :: [Int] -> Int -> ([Int], [Int])
+divide lista n = (take n lista, drop n lista)
+
+intercal :: [Int] -> [Int] -> [Int]
+intercal [] [] = []
+intercal lista [] = lista
+intercal [] lista = lista
+intercal (x:xs) (y:ys) = x : y : intercal xs ys
