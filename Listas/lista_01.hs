@@ -86,3 +86,24 @@ intercal [] [] = []
 intercal lista [] = lista
 intercal [] lista = lista
 intercal (x:xs) (y:ys) = x : y : intercal xs ys
+
+uniao :: [Int] -> [Int] -> [Int]
+uniao a b = unique a ++ b
+
+intersec :: [Int] -> [Int] -> [Int]
+intersec a b = unique [n | n <- a++b, unico n (a++b) == False]
+
+sequencia :: Int -> Int -> [Int]
+sequencia n m = [m..m+(n-1)]
+
+inserir :: Int -> [Int] -> [Int]
+inserir n (x:xs)
+    | n < x = n : (x:xs)
+    | otherwise = x : inserir n xs
+
+isSorted :: [Int] -> Bool
+isSorted a
+    | length a == 1 = True
+isSorted (x:xs)
+    | length xs > 0 && x <= head xs = isSorted xs
+    | otherwise = False
