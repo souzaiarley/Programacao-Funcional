@@ -107,3 +107,8 @@ isSorted a
 isSorted (x:xs)
     | length xs > 0 && x <= head xs = isSorted xs
     | otherwise = False
+    
+qsort :: [Int] -> [Int]
+qsort [] = []
+qsort [x] = [x]
+qsort (x:xs) = qsort [n | n <- (x:xs), n < x] ++ [x] ++ qsort [n | n <- (x:xs), n > x]
