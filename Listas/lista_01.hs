@@ -112,3 +112,16 @@ qsort :: [Int] -> [Int]
 qsort [] = []
 qsort [x] = [x]
 qsort (x:xs) = qsort [n | n <- (x:xs), n < x] ++ [x] ++ qsort [n | n <- (x:xs), n > x]
+
+rotEsq :: Int -> [Char] -> [Char]
+rotEsq _ [] = []
+rotEsq 0 lista = lista
+rotEsq n lista = rotEsq (n-1) newlista
+    where newlista = tail lista ++ [head lista]
+
+rotDir :: Int -> [Char] -> [Char]
+rotDir _ [] = []
+rotDir 0 lista = lista
+rotDir n lista = rotDir (n-1) newlista
+    where newlista = [last lista] ++ init lista
+    
