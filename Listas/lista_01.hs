@@ -106,7 +106,11 @@ isSorted a
     | length a == 1 = True
 isSorted (x:xs)
     | length xs > 0 && x <= head xs = isSorted xs
-    | otherwise = False 
+    | otherwise = False
+
+qsort :: [Int] -> [Int]
+qsort [] = []
+qsort lista = qsort[n | n <- lista, n < head lista] ++ [head lista] ++ qsort [n | n <- lista, n > head lista]
 
 rotEsq :: Int -> [Char] -> [Char]
 rotEsq _ [] = []
