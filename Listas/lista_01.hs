@@ -106,4 +106,16 @@ isSorted a
     | length a == 1 = True
 isSorted (x:xs)
     | length xs > 0 && x <= head xs = isSorted xs
-    | otherwise = False
+    | otherwise = False 
+
+rotEsq :: Int -> [Char] -> [Char]
+rotEsq _ [] = []
+rotEsq 0 lista = lista
+rotEsq n lista = rotEsq (n-1) newlista
+    where newlista = tail lista ++ [head lista]
+
+rotDir :: Int -> [Char] -> [Char]
+rotDir _ [] = []
+rotDir 0 lista = lista
+rotDir n lista = rotDir (n-1) newlista
+    where newlista = [last lista] ++ init lista
