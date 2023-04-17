@@ -138,3 +138,22 @@ titulo string
     | snd tupla /= "" = toUpper (head (fst tupla)) : map toLower (tail (fst tupla)) ++ " " ++ titulo (tail (snd tupla))
     | otherwise = toUpper (head (fst tupla)) : map toLower (tail (fst tupla))
     where tupla = span (/= ' ') string
+
+selec :: [a] -> [Int] -> [a]
+selec [] _ = []
+selec _ [] = []
+selec list (x:xs) = (list !! x) : selec list xs
+
+isPalind :: [Char] -> Bool
+isPalind [] = True
+isPalind [_] = True
+isPalind str
+    | str == reverse str = True
+    | otherwise = False
+
+primo :: Int -> Bool
+primo x = length ([n | n <- [2..x], mod x n == 0]) == 1
+
+sdig :: Int -> Int
+sdig 0 = 0
+sdig n = (mod n 10) + (sdig (div n 10))
