@@ -157,3 +157,37 @@ primo x = length ([n | n <- [2..x], mod x n == 0]) == 1
 sdig :: Int -> Int
 sdig 0 = 0
 sdig n = (mod n 10) + (sdig (div n 10))
+
+bubblesort :: Ord a => [a] -> [a]
+bubblesort s = case bsort' s of
+               t | t == s    -> t
+                 | otherwise -> bubblesort t
+  where bsort' (x:x2:xs) | x > x2    = x2:(bsort' (x:xs))
+                         | otherwise = x:(bsort' (x2:xs))
+        bsort' s = s
+
+compac :: [Int] -> [[Int]]
+compac [] = []
+compac (x:xs)
+    | size > 1 = [[size, x]] ++ compac (snd (span(==x) (x:xs)))
+    | otherwise = [[x]] ++ compac (snd (span(==x) (x:xs)))
+    where size = length (fst (span(==x) (x:xs)))
+
+splitints :: [Int] -> ([Int], [Int])
+splitints [] = ([], [])
+splitints lista = (impares, pares)
+    where
+        impares = [x | x <- lista, mod x 2 == 1]
+        pares = [x | x <- lista, mod x 2 == 0]
+
+perfeito :: Int -> Bool
+perfeito n
+    | length [x | x <- [1..n], x*x == n] == 1 = True
+    | otherwise = False
+
+base :: Int-> Int -> [Char]
+base 0 _ = []
+base n b =  base (div n b) b ++ last
+    where last 
+            | mod n b < 10 = show (mod n b)
+            | otherwise = [chr ((mod n b) - 10 + ord 'A')]
